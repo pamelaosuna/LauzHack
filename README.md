@@ -1,0 +1,2 @@
+# LauzHack
+Hackathon
