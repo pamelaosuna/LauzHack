@@ -3,7 +3,7 @@ import re
 import json
 import urllib
 import Functions
-
+T = 30
 L_L = []
 L = []
 L_P = []
@@ -23,7 +23,7 @@ while line:
         i = float(m.group(1))
         L.append(i)
         line = f.readline()
-        if L.__len__() == 60:
+        if L.__len__() == 30:
             k=[]
             for p in L:
                 k.append(p - L[0])
@@ -42,10 +42,10 @@ for chunk in r.iter_content(chunk_size=1024):
     current = chunk
     # we get the price information:
     text = chunk.decode("utf-8")
-    print(text)
     m = re.search('Z (.+?)\n', text)
     val = float(m.group(1))
-    print(val)
+    print(Buy)
+    print(i)
     L.append(val)
     if i == Buy:
         Functions.buyBitcoin(Q)
@@ -56,7 +56,7 @@ for chunk in r.iter_content(chunk_size=1024):
         XBT, cash = Functions.calculate_Q()
         Q = (cash / 10) / val
     i = i + 1
-    if L.__len__() == 60:
+    if L.__len__() == 30:
         k = []
         for p in L:
             k.append(p - L[0])
@@ -71,7 +71,7 @@ for chunk in r.iter_content(chunk_size=1024):
     def findBuy(L):
         """this function finds the minumum point, which tells us
         we should buy"""
-        # L: list of 60 elements
+        # L: list of 30 elements
         return L.index(min(L))
 
 

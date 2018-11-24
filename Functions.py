@@ -6,7 +6,7 @@ import urllib
 def findBuy(L):
     """this function finds the minumum point, which tells us
     we should buy"""
-    # L: list of 60 elements
+    # L: list of 30 elements
     return L.index(min(L))
 
 
@@ -16,16 +16,20 @@ def findSell(L):
 
 
 def buyBitcoin(x):
+    x = float(x)
     x = str(x)
-    data = 'BUY' + x + 'BTC jmf784hkuhkufsd'
+    data = 'BUY ' + x + ' BTC jmf784hkuhkufsd'
     info = requests.post('http://lauzhack.sqpub.ch', data=data)
+    print(data)
 
 
 
 def sellBitcoin(x):
+    x = float(x)
     x = str(x)
-    data = 'SELL' + x + 'BTC jmf784hkuhkufsd'
+    data = 'SELL ' + x + ' BTC jmf784hkuhkufsd'
     info = requests.post('http://lauzhack.sqpub.ch', data=data)
+    return("sold")
 
 
 def streamData():
@@ -51,9 +55,9 @@ def choose(L, L_L):
     var = float("inf")
     closest = 0
     i=0
-    for i in range(len(L_L)):
+    for i in range(len(L_L)-1):
         s = 0
-        for k in range(60):
+        for k in range(30):
             s += abs(L[k] - L_L[i][k])
         if (s < var):
             closest = i
