@@ -48,7 +48,7 @@ def streamData():
 
 
 def choose(L, L_L):
-    var = 1000
+    var = float("inf")
     closest = 0
     for i in range(len(L_L)):
         s = 0
