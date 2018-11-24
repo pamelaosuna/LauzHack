@@ -38,7 +38,13 @@ def streamData():
             if x <= ' ':
                 break
             t = t + 1
-        print(chunk[t, len(chunk) - 1])
+        i = t+1
+        for i in range(len(chunk)):
+            if chunk[i] > '9' or chunk[i] < '0' or chunk[i] != '.':
+                break
+            i = i+1
+        val = float(chunk[t+1:i])
+        print(val)
 
 
 def choose(L, L_L):
@@ -52,7 +58,11 @@ def choose(L, L_L):
             closest = i
     return i + 1
 
+
 def calculate_Q():
     url = urllib.request.urlopen("http://lauzhack.sqpub.ch/teams")
     data = json.loads(url.read().decode())
     print(data)
+
+
+streamData()
