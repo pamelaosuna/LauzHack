@@ -3,7 +3,7 @@ import re
 import json
 import urllib
 import Functions
-T = 30
+T = 60
 L_L = []
 L = []
 L_P = []
@@ -23,7 +23,7 @@ while line:
         i = float(m.group(1))
         L.append(i)
         line = f.readline()
-        if L.__len__() == 30:
+        if L.__len__() == T:
             k=[]
             for p in L:
                 k.append(p - L[0])
@@ -56,7 +56,7 @@ for chunk in r.iter_content(chunk_size=1024):
         XBT, cash = Functions.calculate_Q()
         Q = (cash / 10) / val
     i = i + 1
-    if L.__len__() == 30:
+    if L.__len__() == T:
         k = []
         for p in L:
             k.append(p - L[0])

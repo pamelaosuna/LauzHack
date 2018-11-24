@@ -1,6 +1,9 @@
 import json
 import requests
 import urllib
+import re
+
+T = 50
 
 
 def findBuy(L):
@@ -29,7 +32,7 @@ def sellBitcoin(x):
     x = str(x)
     data = 'SELL ' + x + ' BTC jmf784hkuhkufsd'
     info = requests.post('http://lauzhack.sqpub.ch', data=data)
-    return("sold")
+    print(data)
 
 
 def streamData():
@@ -57,7 +60,7 @@ def choose(L, L_L):
     i=0
     for i in range(len(L_L)-1):
         s = 0
-        for k in range(30):
+        for k in range(T):
             s += abs(L[k] - L_L[i][k])
         if (s < var):
             closest = i
