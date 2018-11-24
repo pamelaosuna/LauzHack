@@ -19,7 +19,7 @@ def buyBitcoin(x):
     x = str(x)
     data = 'BUY' + x + 'BTC jmf784hkuhkufsd'
     info = requests.post('http://lauzhack.sqpub.ch', data=data)
-    print(info)
+
 
 
 def sellBitcoin(x):
@@ -38,18 +38,19 @@ def streamData():
             if x <= ' ':
                 break
             t = t + 1
-        i = t+1
+        i = t + 1
         for i in range(len(chunk)):
             if chunk[i] > '9' or chunk[i] < '0' or chunk[i] != '.':
                 break
-            i = i+1
-        val = float(chunk[t+1:i])
+            i = i + 1
+        val = float(chunk[t + 1:i])
         print(val)
 
 
 def choose(L, L_L):
     var = float("inf")
     closest = 0
+    i=0
     for i in range(len(L_L)):
         s = 0
         for k in range(60):
@@ -62,5 +63,4 @@ def choose(L, L_L):
 def calculate_Q():
     url = urllib.request.urlopen("http://lauzhack.sqpub.ch/teams")
     data = json.loads(url.read().decode())
-    print(data)
-
+    return data[4]["XBT"], data[4]["cash"]

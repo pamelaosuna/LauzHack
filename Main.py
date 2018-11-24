@@ -10,6 +10,8 @@ L_P = []
 S = []
 i = 0
 c = 0
+Buy = 61
+Sell = 61
 
 # read history
 f = open('Data.txt')
@@ -17,13 +19,20 @@ f = open('Data.txt')
 line = f.readline()
 while line:
     m = re.search('Z (.+?)\n', line)
-    i = float(m.group(1))
-    L.append(i)
-    line = f.readline()
-    if L.size == 60:
-        L_L.append(L - L[0])
-        L = []
-        i = 0
+    try:
+        i = float(m.group(1))
+        L.append(i)
+        line = f.readline()
+        if L.__len__() == 60:
+            k=[]
+            for p in L:
+                k.append(p - L[0])
+            L_L.append(k)
+            L = []
+            i = 0
+    except:
+        line = f.readline()
+
 f.close()
 
 XBT, cash = Functions.calculate_Q()
@@ -47,9 +56,12 @@ for chunk in r.iter_content(chunk_size=1024):
         XBT, cash = Functions.calculate_Q()
         Q = (cash / 10) / val
     i = i + 1
-    if L.size == 60:
-        L_L.append(L - L[0])
-        L_P = Functions.choose(L, L_L)
+    if L.__len__() == 60:
+        k = []
+        for p in L:
+            k.append(p - L[0])
+        L_P = L_L[Functions.choose(L, L_L)]
+        L_L.append(k)
         Buy = Functions.findBuy(L_P)
         Sell = Functions.findSell(L_P)
         L = []
