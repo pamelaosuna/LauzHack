@@ -1,4 +1,6 @@
+import json
 import requests
+import urllib
 
 
 def findBuy(L):
@@ -39,7 +41,7 @@ def streamData():
         print(chunk[t, len(chunk) - 1])
 
 
-def choose():
+def choose(L, L_L):
     var = 1000
     closest = 0
     for i in range(len(L_L)):
@@ -49,3 +51,8 @@ def choose():
         if (s < var):
             closest = i
     return i + 1
+
+def calculate_Q():
+    url = urllib.request.urlopen("http://lauzhack.sqpub.ch/teams")
+    data = json.loads(url.read().decode())
+    print(data)
