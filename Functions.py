@@ -64,5 +64,3 @@ def calculate_Q():
     data = json.loads(url.read().decode())
     print(data)
 
-
-streamData()
