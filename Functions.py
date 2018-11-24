@@ -1,5 +1,14 @@
 import requests
 
+def findBuy(L):
+    """this function finds the minumum point, which tells us
+    we should buy"""
+    #L: list of 60 elements
+    return L.index(min(L))
+
+def findSell(L):
+    """ finds the maximum point, where we should sell"""
+    return L.index(max(L))
 
 def buyBitcoin(x):
     x = str(x)
