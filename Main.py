@@ -1,6 +1,7 @@
 import requests
 import re
 import json
+import urlib.request
 
 L_L = []
 L = []
@@ -9,6 +10,9 @@ S = []
 i = 0
 c = 0
 
+urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as url:
+    data = json.loads(url.read().decode())
+    print(data)
 
 #read history
 f = open('histo_prices.txt')
@@ -37,9 +41,10 @@ for chunk in r.iter_content(chunk_size=1024):
     print(val)
     L.append(val)
     if i == Buy:
-        buyBitcoin()
+        buyBitcoin(Q)
     if i == Sell and :
-        sellBitcoin()
+        sellBitcoin(Q)
+        Q = calculate_Q()
     i = i+1
     if L.size == 60:
         L_L.append(L-L[0])
@@ -88,6 +93,9 @@ def streamData():
             t = t + 1
         print(chunk[t, len(chunk) - 1])
 
-
+def calculate_Q():
+    url = urllib.request.urlopen("http://lauzhack.sqpub.ch/teams")
+    data = json.loads(url.read().decode())
+    print(data)
         
     
