@@ -36,6 +36,16 @@ def streamData():
             if x <= ' ':
                 break
             t = t + 1
-            #chunk = float(chunk[t+1:(chunk.__len__() - 3)])
-        print(chunk[t+1:(chunk.__len__() - 5)])
+        print(chunk[t, len(chunk) - 1])
 
+
+def choose():
+    var = 1000
+    closest = 0
+    for i in range(len(L_L)):
+        s = 0
+        for k in range(60):
+            s += abs(L[k] - L_L[i][k])
+        if (s < var):
+            closest = i
+    return i + 1
